@@ -1,6 +1,6 @@
 server: false
 destination: ./_site
-auto:        false
+auto:        true
 server_port: 4000
 pygments:    false
 markdown:    maruku
