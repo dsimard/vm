@@ -2,10 +2,12 @@
 %html
   %head
     %title VM
-    %script(src="/js/jquery-1.6.4.min.js")
-    %script(src="/js/jquery.mobile-1.0rc1.min.js")
-    %link(href="/css/jquery.mobile-1.0rc1.min.css" rel="stylesheet" type="text/css")
+    %script(src="js/jquery-1.6.4.min.js")
+    %script(src="js/jquery.mobile-1.0rc1.min.js")
+    %script(src="js/geo.min.js")
+    %link(href="css/jquery.mobile-1.0rc1.min.css" rel="stylesheet" type="text/css")
     %meta(name="viewport" content="width=device-width initial-scale=1")
+	</script>
   %body
     %div(data-role="page")
       %div(data-role="header")
@@ -16,3 +18,22 @@
 
       %div(data-role="footer")
         %h4 
+    :javascript
+      $(document).ready(function() {
+		    if(geo_position_js.init()){
+			    geo_position_js.getCurrentPosition(success_callback,error_callback,{enableHighAccuracy:true});
+		    }
+		    else{
+			    alert("Functionality not available");
+		    }
+     
+		    function success_callback(p)
+		    {
+			    alert('lat='+p.coords.latitude.toFixed(2)+';lon='+p.coords.longitude.toFixed(2));
+		    }
+		
+		    function error_callback(p)
+		    {
+			    alert('error='+p.code);
+		    }		
+      });
